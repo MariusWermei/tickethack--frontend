@@ -78,7 +78,7 @@ h3 {
 }
 
 /**
-CARDS CONTAINER
+CARDS CONTAINER GAUCHE
 */
 
 #cards-container {
@@ -141,12 +141,45 @@ CARDS CONTAINER
   font-size: 16px;
 }
 
+/**
+CARDS CONTAINER DROITE
+*/
+
 #right-card {
   height: 400px;
   width: 400px;
   background-color: white;
   border-radius: 20px;
+  overflow-y: auto;
+  max-height: 600px;
+  padding: 20px;
 }
+
+/**
+CARDS CONTAINER DROITE SCROLLBAR 
+*/
+
+#right-card::-webkit-scrollbar {
+  width: 8px;
+}
+
+#right-card::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+#right-card::-webkit-scrollbar-thumb {
+  background: rgb(75, 161, 115);
+  border-radius: 10px;
+}
+
+#right-card::-webkit-scrollbar-thumb:hover {
+  background: rgb(55, 141, 95);
+}
+
+/**
+AFFICHER LES TRAJETS EN FONCTION DE LA RECHERCHE
+*/
 
 #display-trips {
   display: flex;
@@ -154,6 +187,29 @@ CARDS CONTAINER
   align-items: center;
   justify-content: center;
   height: 100%;
+  gap: 20px;
+}
+
+.trip-items {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  width: 360px;
+  height: 50px;
+  background-color: rgb(242, 238, 238);
+  border-radius: 10px;
+}
+
+.book-button {
+  height: 40px;
+  width: 45px;
+  background-color: rgb(75, 161, 115);
+  border-radius: 10px;
+  border: none;
+  color: white;
+  margin-left: 25px;
 }
 
 img {

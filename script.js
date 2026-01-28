@@ -5,9 +5,17 @@ buttonSearch.addEventListener("click", () => {
   const departure = document.querySelector(".input-haut").value.trim();
   const arrival = document.querySelector(".input").value.trim();
   const date = document.querySelector(".calendar-input").value;
+  const errorContainer = document.getElementById("error-message");
 
   if (!departure || !arrival || !date) {
-    alert("Veuillez remplir tous les champs, y compris la date");
+    errorContainer.innerHTML = `
+    <p style= "color: red; font-family: Arial, sans-serif; font-size: 12px"> Veuillez remplir tous les champs ! </p>
+    `;
+
+    document.querySelector(".input-haut").style.border = "1px solid #b3261e";
+    document.querySelector(".input").style.border = "1px solid #b3261e";
+    document.querySelector(".calendar-input").style.border =
+      "1px solid #b3261e";
     return;
   }
 
@@ -33,6 +41,11 @@ buttonSearch.addEventListener("click", () => {
       if (data.result) {
         console.log("Trajets trouvés:", data.trips);
         displayTrips(data.trips);
+        document.querySelector(".input-haut").style.border = "none";
+        document.querySelector(".input").style.border = "none";
+        document.querySelector(".calendar-input").style.border =
+          " 2px solid #ddd";
+        errorContainer.innerHTML = "";
       } else {
         console.log(data.message);
         displayNoTrips();

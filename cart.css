@@ -84,6 +84,7 @@ main {
 .empty-cart {
   text-align: center;
   color: #999;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .cart-trips-elements {

@@ -28,6 +28,7 @@ HEADER
   margin-left: 20px;
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
 #list-container {
@@ -86,7 +87,7 @@ CARDS CONTAINER GAUCHE
   gap: 70px;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 90%;
 }
 
 #left-card {
@@ -98,7 +99,7 @@ CARDS CONTAINER GAUCHE
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 50px;
+  gap: 30px;
 }
 
 #inputs-container {
@@ -117,12 +118,12 @@ CARDS CONTAINER GAUCHE
   background-color: rgb(242, 238, 238);
   padding-left: 8px;
   border-radius: 10px;
+  letter-spacing: 1px;
 }
 
 #input-border {
-  border: 1px rgb(39, 36, 36) solid;
-  border-width: thin;
-  width: 300px;
+  border: 1px solid rgba(39, 36, 36, 0.5);
+  width: 335px;
 }
 
 .input {
@@ -132,6 +133,7 @@ CARDS CONTAINER GAUCHE
   background-color: rgb(242, 238, 238);
   padding-left: 8px;
   border-radius: 10px;
+  letter-spacing: 1px;
 }
 
 #search-button {
@@ -156,30 +158,29 @@ CARDS CONTAINER DROITE
   width: 400px;
   background-color: white;
   border-radius: 20px;
-  overflow-y: auto;
   max-height: 600px;
-  padding: 20px;
+  overflow-y: auto;
 }
 
 /**
 CARDS CONTAINER DROITE SCROLLBAR 
 */
 
-#right-card::-webkit-scrollbar {
+#display-trips::-webkit-scrollbar {
   width: 8px;
 }
 
-#right-card::-webkit-scrollbar-track {
+#display-trips::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 10px;
 }
 
-#right-card::-webkit-scrollbar-thumb {
+#display-trips::-webkit-scrollbar-thumb {
   background: rgb(75, 161, 115);
   border-radius: 10px;
 }
 
-#right-card::-webkit-scrollbar-thumb:hover {
+#display-trips::-webkit-scrollbar-thumb:hover {
   background: rgb(55, 141, 95);
 }
 
@@ -192,7 +193,6 @@ AFFICHER LES TRAJETS EN FONCTION DE LA RECHERCHE
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
   gap: 20px;
   margin-top: 10px;
 }

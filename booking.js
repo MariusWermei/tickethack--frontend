@@ -55,6 +55,6 @@ function displayBookings(books) {
 function displayNoBookings() {
   const container = document.getElementById("booking-trips-container");
   container.innerHTML = `
-    <p style="text-align: center; color: #999;">Aucune réservation</p>
+    <p class="empty-booking">Aucune réservation</p>
   `;
 }

@@ -93,7 +93,7 @@ function addBookButtonListeners() {
 
   bookButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      // Récupére les données du trajet via l'attribut data récupérer dans la fonction displayTrips
+      // Récupére les données du trajet via l'attribut data-, que l'on a récupérer dans la fonction displayTrips()
       const tripData = {
         departure: button.getAttribute("data-departure"),
         arrival: button.getAttribute("data-arrival"),
@@ -107,7 +107,7 @@ function addBookButtonListeners() {
   });
 }
 
-// Pour ajouter au panier, fetch cartTrip
+// Pour ajouter au panier, fetch cartTrip pour ajouter le trajet dans la db
 function addToCart(tripData) {
   fetch("http://localhost:3000/cartTrip", {
     method: "POST",

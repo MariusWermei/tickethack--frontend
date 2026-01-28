@@ -107,6 +107,7 @@ CARDS CONTAINER GAUCHE
   margin-top: 20px;
   height: 100%;
   border-radius: 20px;
+  align-items: center;
 }
 
 .input-haut {
@@ -116,7 +117,12 @@ CARDS CONTAINER GAUCHE
   background-color: rgb(242, 238, 238);
   padding-left: 8px;
   border-radius: 10px;
-  border-bottom: 1px solid black;
+}
+
+#input-border {
+  border: 1px rgb(39, 36, 36) solid;
+  border-width: thin;
+  width: 300px;
 }
 
 .input {

@@ -1,9 +1,10 @@
-// Permet d'afficher notre panier à chaque chargement de la page (voir doc si besoin)
+// Permet d'afficher notre panier à chaque chargement de la page (voir doc pour le paramètre "DOMContentLoaded" si besoin)
 window.addEventListener("DOMContentLoaded", () => {
   loadCart();
+  addPurchaseButtonListener();
 });
 
-// On appelle ton cher backend et on affiche les infos présentes
+// On appelle ton cher backend et on affiche que l'on a save() dans notre backend (buttonListener de notre script.js)
 // J'ai encapsulé les différentes actions que je veux faire dans ma contion => Clean code
 function loadCart() {
   fetch("http://localhost:3000/cartTrip")
@@ -102,5 +103,81 @@ function deleteFromCart(cartId) {
     })
     .catch((error) => {
       console.error("Erreur:", error);
+    });
+}
+
+// A partir d'ici c'est notre script pour la redirection avec notre bouton purchase, vers notre booking.html
+// C'est exactement la même même logique qu'on à fait pour enrengistré puis afficher nos différents trajets (script.js)
+// Ici on va aller pioché dans la db cart/trip pour aller la post dans notre db booking/trip (pour la suite voir Booking.js)
+
+function addPurchaseButtonListener() {
+  const purchaseButton = document.getElementById("purchase-button");
+
+  purchaseButton.addEventListener("click", () => {
+    purchaseCart();
+  });
+}
+
+// On achète tout le panier (on retourne toute la data cartTrips)
+function purchaseCart() {
+  fetch("http://localhost:3000/cartTrip")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Panier récupéré pour achat:", data);
+
+      if (!data.result || data.carts.length === 0) {
+        alert("Votre panier est vide !");
+        return;
+      }
+
+      let completedActions = 0;
+      const totalTrips = data.carts.length;
+
+      data.carts.forEach((cart) => {
+        fetch("http://localhost:3000/bookingTrip", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            departure: cart.departure,
+            arrival: cart.arrival,
+            date: cart.date,
+            price: cart.price,
+          }),
+        })
+          .then((response) => response.json())
+          .then((bookingData) => {
+            console.log("Trajet réservé:", bookingData);
+            fetch("http://localhost:3000/cartTrip", {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ id: cart._id }),
+            })
+              .then((response) => response.json())
+              .then((deleteData) => {
+                console.log("Trajet supprimé du panier:", deleteData);
+
+                completedActions++;
+
+                if (completedActions === totalTrips) {
+                  alert("Achat confirmé ! Votre panier a été vidé.");
+                  window.location.href = "./booking.html";
+                }
+              })
+              .catch((error) => {
+                console.error("Erreur lors de la suppression:", error);
+              });
+          })
+          .catch((error) => {
+            console.error("Erreur lors de la réservation:", error);
+          });
+      });
+    })
+    .catch((error) => {
+      console.error("Erreur:", error);
+      alert("Erreur de connexion");
     });
 }
